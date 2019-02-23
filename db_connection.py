@@ -30,6 +30,9 @@ class WordsDatabaseConnection(object):
     
     @classmethod
     def create(cls):
+        """
+        Creates a cls object with default values
+        """
         default_database = "{}/all_english_words.db".format(os.getcwd())
         default_word_text_file_path = 'allwords.txt'
         return cls(

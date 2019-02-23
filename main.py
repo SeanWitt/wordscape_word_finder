@@ -38,7 +38,6 @@ class GameRunner(object):
         self.english_words_found.append(word.fetchall()[0])
 
     def pretty_print_words(self, words_list):
-        print words_list
         words_list.sort(lambda x,y: cmp(len(x), len(y)))
         for word in words_list:
             print word
