@@ -34,22 +34,24 @@ class GameRunner(object):
                 self.letter_combination_id_to_retrieve.append(fetched_id[0][0])
 
     def pull_word_with_combination_id(self, combo):
-        word = self.words_db.cursor.execute("SELECT word FROM raw_words WHERE letter_combinations_id=?", (combo,))
-        self.english_words_found.append(word.fetchall()[0])
+        word_query_results = self.words_db.cursor.execute("SELECT word FROM raw_words WHERE letter_combinations_id=?", (combo,))
+        list_of_word_tuples = word_query_results.fetchall()
+        for word_tuple in list_of_word_tuples:
+            self.english_words_found.append(word_tuple[0])
 
     def pretty_print_words(self, words_list):
         words_list.sort(lambda x,y: cmp(len(x), len(y)))
         for word in words_list:
-            print word
+            print(word)
 
 
 
 if __name__ == '__main__':
-    gr = GameRunner('pointblank')
+    gr = GameRunner('iriasn')
     gr._get_possible_sorted_letter_combinations()
     gr._pull_ids_of_letter_combinations()
     for c_id in gr.letter_combination_id_to_retrieve:
         gr.pull_word_with_combination_id(c_id)
-    gr.pretty_print_words(list(set(sum(gr.english_words_found, ()))))
+    gr.pretty_print_words(gr.english_words_found)
 
             

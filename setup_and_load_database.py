@@ -46,7 +46,7 @@ def status_printer(i):
     """
     if i % 500 == 0:
         os.system("clear")
-        print "Successfully Processed {} Words...".format(i)
+        print("Successfully Processed {} Words...".format(i))
 
 def insert_or_retrieve_combination(word_db, sorted_word):
     """
